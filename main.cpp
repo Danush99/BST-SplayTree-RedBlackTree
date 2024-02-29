@@ -82,27 +82,28 @@ void doTreeOperations(const string& treeType) {
     array<std::string, 3> operations = {"insert", "search", "delete"};
     array<std::string, 2> setList = {"set1", "set2"};
     array<std::string, 3> toOperationFilePathList = {"data_1.txt", "data_2.txt", "data_3.txt"};
-    for (const std::string& operation : operations) {
+    for (const std::string& setName : setList) {
         cout << "" << endl;
-        cout << "__________ "<<operation<<" __________" << endl;
-        cout << "" << endl;
-        for (const std::string& setName : setList) {
+        cout << "----- "<<setName<<" -----" << endl;
+        for (const std::string& toOperationFilePath : toOperationFilePathList) {
             cout << "" << endl;
-            cout << "----- "<<setName<<" -----" << endl;
-            for (const std::string& toOperationFilePath : toOperationFilePathList) {
-                cout << "_ "<<toOperationFilePath<<" _" << endl;
+            cout << "_ "<<toOperationFilePath<<" _" << endl;
+            BST bst;
+            SplayTree spTree;
+            RBTree rbt;
+            for (const std::string& operation : operations) {
+                cout << "" << endl;
+                cout << "___________ "<<operation<<" ___________" << endl;
+                cout << "" << endl;
                 string filePath = "../data/data/"+operation+"/"+setName+"/"+toOperationFilePath;
                 cout << "filePath: "<<filePath<< endl;
                 if(treeType=="bst"){
-                    BST bst;
                     measureTreeOperationTime(bst,operation,filePath);
                 }
                 if(treeType=="spTree"){
-                    SplayTree spTree;
                     measureTreeOperationTime(spTree,operation,filePath);
                 }
                 if(treeType=="rbt"){
-                    RBTree rbt;
                     measureTreeOperationTime(rbt,operation,filePath);
                 }
             }
